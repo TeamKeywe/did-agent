@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: did-agent
+  task:
+    execution:
+      pool:
+        core-size: 10
+        max-size: 20
+        queue-capacity: 100
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL}
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+    include: ${SPRING_PROFILES_INCLUDE:swagger,actuator,grpc,redis}
